@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container">
+      <a class="navbar-brand" href="#">Chat App</a>
+      <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [class.show]="isNavbarOpen" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/login" (click)="LogOut()" routerLinkActive="active" class="nav-link">Logout</a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/register" routerLinkActive="active" class="nav-link">Register</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" (click)="toggleDropdown()"
+              aria-haspopup="true" aria-expanded="false">
+              Settings
+            </a>
+            <div class="dropdown-menu" [class.show]="isDropdownOpen" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">Notifications</a>
+              <div class="dropdown-divider"></div>
+             
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row mb-3"> <!-- Added mb-3 class for spacing -->
+        <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+
+                    <!-- form card registration -->
+                    <div class="card rounded shadow shadow-sm">
+                        <div class="card-header">
+                            <h3 class="mb-0">Register</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="formRegister" novalidate="" (ngSubmit)="Register()">
+                                <div class="form row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <input [(ngModel)]="firstname" name="firstname" type="text" class="form-control form-control-lg rounded-20" required placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <input [(ngModel)]="lastname" name="lastname" type="text" class="form-control form-control-lg rounded-20" required placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="username" name="username" type="text" class="form-control form-control-lg rounded-20" required placeholder="Username">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="email" name="email" type="email" class="form-control form-control-lg rounded-20" required placeholder="Email">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="password" name="password" type="password" class="form-control form-control-lg rounded-20" required placeholder="Password">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" class="form-control form-control-lg rounded-20" required placeholder="Confirm Password">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg float-right" id="btnRegister">Register</button>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card registration -->
+
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container-->

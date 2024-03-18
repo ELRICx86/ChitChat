@@ -1,0 +1,35 @@
+<ng-container *ngIf="openChat===false">
+    <div class="text-center">
+        <h1>Chat with other people</h1>
+    </div>
+    
+    <div [formGroup]="userform">
+        <div (ngSubmit)="submitForm()">
+            <input [(ngModel)]="UserName" class="form-control" formControlName="name" type="text" id="formGroupExampleInput"
+                placeholder="Enter Name" [class.is-invalid]="submitted && userform.get('name')?.errors"/>
+    
+            <!-- <span formControlName="name" class="text-danger" *ngIf="submitted && userform.get('name')?.errors">
+                Your name must be at least 3, and maximum 15 characters
+            </span> -->
+            
+            <div class="form-floating" *ngIf="apiErrorMessages.length>0">
+                <ul class="text-danger">
+                    <li *ngFor="let error of apiErrorMessages">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+        
+    
+            <div>
+                <button type="button" (click)="submitForm()" type="submit" class="btn btn-outline-primary"
+                    style="margin-top: 15px;">Primary</button>
+            </div>
+        </div>
+        
+    </div>
+</ng-container>
+
+<ng-container *ngIf="openChat===true" >
+    <app-chat (logoutEmmiter)="Close()"></app-chat>
+</ng-container>

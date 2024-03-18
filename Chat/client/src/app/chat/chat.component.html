@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-lg-2">
+        <div class="d-grid">
+            <button class="btn btn-primary btn-block" type="button" (click)="Logout()">Logout</button>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-lg-2">
+        <div class="card border-secondary mb-3">
+            <div class="card-header h3 text-muted text-center">Users</div>
+            <div class="card-body" style="min-height:500px">
+                <div class="row mt-1" *ngFor="let user of chatService.onlineUsers">
+                    <div class="col">
+                        <div class="d-grid">
+                            <button [value]="user" class="btn btn-success card-text btn-block"  (click)="childClick(user)" [ngClass]="user===chatService.myName?'btn-success':'btn-dark'" [disabled]="user===chatService.myName">{{user}}</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="card border-secondary">
+            <div class="card-header h3 text-muted text-center">
+                {{title}}
+            </div>
+            <div class="card-body" style="min-height: 500px;">
+                <app-messages *ngIf="!clicked"   [messages]="chatService.msgs" />
+                <app-private-message *ngIf="clicked" [Private]="chatService.pmsgs" />
+            </div>
+            <div class="card-footer">
+                <app-chat-input (contentEmit)="sendMessage($event)" />
+            </div>
+        </div>
+    </div>
+</div>

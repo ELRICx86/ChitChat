@@ -1,0 +1,6 @@
+@FLiu__Auth_HostAddress = http://localhost:5285
+
+GET {{FLiu__Auth_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

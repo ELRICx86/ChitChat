@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "NXrmdbxd8kYmlsc1v06CZEnXBruBoTy4yhYsaZS9FyY=",
+  "Source": "chatapi",
+  "BasePath": "_content/chatapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
