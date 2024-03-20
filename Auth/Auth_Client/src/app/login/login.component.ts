@@ -18,6 +18,7 @@ export class LoginComponent {
 
   }
 
+
   email : string="";
   password : string="";
     
@@ -32,6 +33,7 @@ export class LoginComponent {
 
     this.primary.login(login).subscribe({
       next: (response:LoginResponse) => {
+        this.primary.isLoggedin = true;
         //if(response.statusCode!=200)throw error;
         // Assuming response contains credentials or any other success data
         if(response.statusCode !="200"){

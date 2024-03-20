@@ -12,13 +12,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ChatComponent } from './chat/chat.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { MessagesComponent } from './messages/messages.component';
+import { InputComponent } from './input/input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    ChatComponent,
+    ContactsComponent,
+    MessagesComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

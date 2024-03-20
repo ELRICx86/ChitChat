@@ -17,7 +17,10 @@ export class NavbarComponent {
   }
 LogOut() {
   this.primary.logout().subscribe({
-    next:(response) => console.log(response),
+    next:(response) => {
+      this.primary.isLoggedin = false;
+      console.log(response)
+    },
     error: e => console.log(e.message)
   });
 }

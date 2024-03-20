@@ -10,6 +10,7 @@ import { Register } from '../Interface/Register';
 export class PrimaryService {
 
 
+  public isLoggedin : boolean = false;
 
   apiUrl ="https://localhost:7204";
   apiUrl1 ="http://localhost:5285"
@@ -99,7 +100,9 @@ export class PrimaryService {
   //   };
   // }
     
-  
+  getLoggedin(){
+    return this.isLoggedin;
+  }
 
   
 
