@@ -16,6 +16,8 @@ import { ChatComponent } from './chat/chat.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { MessagesComponent } from './messages/messages.component';
 import { InputComponent } from './input/input.component';
+import { PendingComponent } from './pending/pending.component';
+import { FriendlistComponent } from './friendlist/friendlist.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { InputComponent } from './input/input.component';
     ChatComponent,
     ContactsComponent,
     MessagesComponent,
-    InputComponent
+    InputComponent,
+    PendingComponent,
+    FriendlistComponent
   ],
   imports: [
     BrowserModule,

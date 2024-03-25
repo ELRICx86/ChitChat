@@ -1,0 +1,18 @@
+<div class="col-auto friend-scroll">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Since</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let friend of friends" [ngClass]="{'table-warning': friend.status === 'Pending', 'table-danger' : friend.status==='Rejected','table-success' : friend.status==='Accepted'}">
+                <td>{{ friend.firstName+" "+friend.lastName }}</td>
+                <td>{{ friend.email }}</td>
+                <td>{{ friend.since | date:'MM/dd/yyyy' }}<br><small>{{ friend.since | date:' h:mm a' }}</small></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

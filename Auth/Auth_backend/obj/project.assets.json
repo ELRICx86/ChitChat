@@ -1201,11 +1201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TN-99348\\Desktop\\angular\\ffff\\api\\Test_Auth\\FLiu--Auth\\Auth.csproj",
+      "projectUniqueName": "C:\\Users\\TN-99348\\Desktop\\chat app\\Auth\\Auth_backend\\Auth.csproj",
       "projectName": "Auth",
-      "projectPath": "C:\\Users\\TN-99348\\Desktop\\angular\\ffff\\api\\Test_Auth\\FLiu--Auth\\Auth.csproj",
+      "projectPath": "C:\\Users\\TN-99348\\Desktop\\chat app\\Auth\\Auth_backend\\Auth.csproj",
       "packagesPath": "C:\\Users\\TN-99348\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TN-99348\\Desktop\\angular\\ffff\\api\\Test_Auth\\FLiu--Auth\\obj\\",
+      "outputPath": "C:\\Users\\TN-99348\\Desktop\\chat app\\Auth\\Auth_backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

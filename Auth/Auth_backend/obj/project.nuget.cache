@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3+9Svhkw87ZXbE8R2bLxEdand8/gyyPriM2CRl9VLVgIDOmn8WbMwqP0ADeYv4mUEtaY6EKG6PYUFj+z3afw2g==",
+  "dgSpecHash": "dYq2FLbuKoULGtEMCKSdcd7a29jjB6DbyNzS4I/V26pimhQsERxnJKT8Mseg9zNqtwKUT3Pr6O4rN9VS9+F+Ow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\TN-99348\\Desktop\\angular\\ffff\\api\\Test_Auth\\FLiu--Auth\\Auth.csproj",
+  "projectFilePath": "C:\\Users\\TN-99348\\Desktop\\chat app\\Auth\\Auth_backend\\Auth.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TN-99348\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.3\\microsoft.aspnetcore.authentication.jwtbearer.8.0.3.nupkg.sha512",
     "C:\\Users\\TN-99348\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

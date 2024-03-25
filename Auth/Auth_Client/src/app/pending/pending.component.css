@@ -1,0 +1,27 @@
+.pending-scroll {
+    height: 600px;
+    overflow-y:scroll ;    
+}
+
+table {
+    table-layout: fixed;
+    width: 100%; /* Set table width to 100% */
+}
+
+th, td {
+    width: 25%; /* Divide table width equally among 3 columns */
+    text-align: center; /* Center align text within cells */
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+}
+.c_btn{
+    margin: 5px;
+}
+
+
+
+
+

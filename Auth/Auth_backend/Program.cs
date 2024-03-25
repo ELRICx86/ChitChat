@@ -20,6 +20,8 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IAuthRepositoy,  AuthRepository>();
 
+builder.Services.AddScoped<IFriendShipRepo, FriendShipRepo>();
+
 /*builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.MinimumSameSitePolicy = SameSiteMode.None; // Set SameSite to None, Strict, or Lax based on your needs
