@@ -6,18 +6,19 @@ import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { authGuard } from './Auth/auth.guard';
 import { PendingComponent } from './pending/pending.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  {path:"chat", component: ChatComponent},
-  {path: "pending", component: PendingComponent},
+  {path:"chat", component: ChatComponent, canActivate: [authGuard]},
+  {path: "pending", component: PendingComponent,canActivate: [authGuard]},
   { path: "**", redirectTo: "" } // Redirect to default route (usually AppComponent)
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),CommonModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

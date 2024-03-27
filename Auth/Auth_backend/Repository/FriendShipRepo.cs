@@ -1,6 +1,7 @@
 ﻿using FLiu__Auth.Models;
 using FLiu__Auth.Models.Dto.NewFolder;
 using System.Data.SqlClient;
+using System.Transactions;
 
 namespace FLiu__Auth.Repository
 {
@@ -122,7 +123,7 @@ namespace FLiu__Auth.Repository
             using (var connection = await GetOpenConnectionAsync())
             {
 
-                string query = "DELETE FROM Friends OUTPUT DELETED.* WHERE UserId1 = @UserId1 AND UserId2 = @UserId2";
+                string query = "DELETE FROM Friends OUTPUT DELETED.* WHERE (UserID1 = @UserID1 AND UserID2 = @UserID2) OR (UserID1 = @UserID2 AND UserID2 = @UserID1)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId1", id1);
@@ -195,7 +196,45 @@ namespace FLiu__Auth.Repository
             return friendships;
         }
 
+        public async Task<IEnumerable<MiniStatement>> GetMiniStatement(int userId)
+        {
+            List<MiniStatement> miniStatements = new List<MiniStatement>();
 
+            using (var conn = await GetOpenConnectionAsync())
+            {
+                string query = "Select * from GetMiniStatement(@UserId)";
+
+                using (var command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            MiniStatement miniStatement = new MiniStatement
+                            {
+                                FriendshipID = reader.IsDBNull(reader.GetOrdinal("FriendshipID")) ? 0 : reader.GetInt32(reader.GetOrdinal("FriendshipID")),
+                                UserId = reader.IsDBNull(reader.GetOrdinal("UserID")) ? 0 : reader.GetInt32(reader.GetOrdinal("UserID")),
+                                FirstName = reader.IsDBNull(reader.GetOrdinal("FirstName")) ? null : reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.IsDBNull(reader.GetOrdinal("LastName")) ? null : reader.GetString(reader.GetOrdinal("LastName")),
+                                Email = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
+                                UpdatedAt = reader.IsDBNull(reader.GetOrdinal("UpdatedAt")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("UpdatedAt")),
+                                Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? null : reader.GetString(reader.GetOrdinal("Status")),
+                                LastMessage = reader.IsDBNull(reader.GetOrdinal("LastMessage")) ? null : reader.GetString(reader.GetOrdinal("LastMessage")),
+                                LastActivityAt = reader.IsDBNull(reader.GetOrdinal("LastActivityAt")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("LastActivityAt")),
+                                IsActive = reader.IsDBNull(reader.GetOrdinal("IsActive")) ? false : reader.GetBoolean(reader.GetOrdinal("IsActive")),
+                                UserName = reader.IsDBNull(reader.GetOrdinal("UserName")) ? null : reader.GetString(reader.GetOrdinal("UserName"))
+                            };
+
+                            miniStatements.Add(miniStatement);
+                        }
+
+
+                    }
+                }
+            }
+            return miniStatements;
+        }
 
         public async Task<FriendShip> GetFriendById(int userId)
         {
@@ -230,6 +269,43 @@ namespace FLiu__Auth.Repository
             }
 
             return friendShip;
+        }
+
+
+        public async Task<IEnumerable<FriendShipDetails>> GetAllPendings(int userId)
+        {
+            List<FriendShipDetails> friendships = new List<FriendShipDetails>();
+
+            using (var connection = await GetOpenConnectionAsync())
+            {
+                string query = "SELECT * FROM GetAllPendings(@UserId)";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (reader.Read())
+                        {
+                            FriendShipDetails friendShip = new FriendShipDetails
+                            {
+                                FriendshipID = Convert.ToInt32(reader["FriendshipID"]),
+                                UserID = Convert.ToInt32(reader["UserID"]),
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["LastName"].ToString(),
+                                Status = reader["Status"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Since = Convert.ToDateTime(reader["CreatedAt"])
+                            };
+
+                            friendships.Add(friendShip);
+                        }
+                    }
+                }
+            }
+
+            return friendships;
         }
 
         public async Task<IEnumerable<FriendShipDetails>> GetRequest(int id)
@@ -273,47 +349,83 @@ namespace FLiu__Auth.Repository
         {
             using (var conn = await GetOpenConnectionAsync())
             {
-                string query;
-                if (action.ToLower() == "accept")
+                // Begin a transaction
+                SqlTransaction transaction = null;
+                try
                 {
-                    query = "UPDATE Friends SET Status = 'Accepted' OUTPUT inserted.* WHERE UserID2 = @user AND UserID1 = @friend";
-                }
-                else
-                {
-                    query = "UPDATE Friends SET Status = 'Rejected' OUTPUT inserted.* WHERE UserID2 = @user AND UserID1 = @friend";
-                }
+                    transaction = conn.BeginTransaction();
 
-                using (var command = new SqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@user", user);
-                    command.Parameters.AddWithValue("@friend", friend);
-
-                    // Execute the SQL command asynchronously and get the updated row
-                    using (var reader = await command.ExecuteReaderAsync())
+                    string query;
+                    if (action.ToLower() == "accept")
                     {
-                        // Check if any rows were returned
-                        if (await reader.ReadAsync())
+                        query = "UPDATE Friends SET Status = 'Accepted' OUTPUT inserted.* WHERE UserID2 = @user AND UserID1 = @friend";
+                    }
+                    else
+                    {
+                        query = "UPDATE Friends SET Status = 'Rejected' OUTPUT inserted.* WHERE UserID2 = @user AND UserID1 = @friend";
+                    }
+
+                    using (var command = new SqlCommand(query, conn, transaction))
+                    {
+                        command.Parameters.AddWithValue("@user", user);
+                        command.Parameters.AddWithValue("@friend", friend);
+
+                        // Execute the SQL command asynchronously and get the updated row
+                        using (var reader = await command.ExecuteReaderAsync())
                         {
-                            // If a row was returned, construct a FriendShip object with details
-                            return new FriendShip
+                            // Check if any rows were returned
+                            if (await reader.ReadAsync())
                             {
-                                Type = true,
-                                FriendShipID = Convert.ToInt32(reader["FriendshipID"]),
-                                UserID1 = Convert.ToInt32(reader["UserID1"]),
-                                UserID2 = Convert.ToInt32(reader["UserID2"]),
-                                Status = reader["Status"].ToString(),
-                                ActionUserID = Convert.ToInt32(reader["ActionUserId"]),
-                                CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
-                                UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"])
-                            };
+                                // If a row was returned, construct a FriendShip object with details
+                                FriendShip friendship = new FriendShip
+                                {
+                                    Type = true,
+                                    FriendShipID = Convert.ToInt32(reader["FriendshipID"]),
+                                    UserID1 = Convert.ToInt32(reader["UserID1"]),
+                                    UserID2 = Convert.ToInt32(reader["UserID2"]),
+                                    Status = reader["Status"].ToString(),
+                                    ActionUserID = Convert.ToInt32(reader["ActionUserId"]),
+                                    CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
+                                    UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"])
+                                };
+
+                                reader.Close();
+
+                                // If the action was successful and it's an accept action, insert a new conversation record
+                                if (action.ToLower() == "accept")
+                                {
+                                    string temp = user < friend ? $"{user}_{friend}" : $"{friend}_{user}";
+                                    string message_query = @"INSERT INTO Conversations (ConversationType, ConversationName) VALUES (@ConversationType, @ConversationName);";
+                                    using (var command2 = new SqlCommand(message_query, conn, transaction))
+                                    {
+                                        command2.Parameters.AddWithValue("@ConversationType", "OneToOne");
+                                        command2.Parameters.AddWithValue("@ConversationName", temp);
+                                        await command2.ExecuteNonQueryAsync();
+                                    }
+                                }
+
+                                // Commit the transaction
+                                transaction.Commit();
+
+                                return friendship;
+                            }
                         }
                     }
                 }
-            }
+                catch (Exception ex)
+                {
+                    // Rollback the transaction if an error occurs
+                    transaction?.Rollback();
+                    // Log or handle the exception
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
 
-            // If no rows were affected or an error occurred, return null
-            return null;
+                // If no rows were affected or an error occurred, return null
+                return null;
+            }
         }
+
+
 
     }
 }

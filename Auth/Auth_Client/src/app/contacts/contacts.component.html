@@ -1,65 +1,12 @@
 <table class="table table-hover">
 
     <tbody>
-        <tr>
 
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
+        <tr *ngFor="let contact of contacts">
+            <td><ngx-avatars [bgColor]="getRandomColor(contact.firstName)" name="{{contact.firstName}} {{contact.lastName}}"></ngx-avatars></td>
+            <td>{{contact.firstName}} {{contact.lastName}} <br><small>{{contact.lastMessage}}</small></td>
+            <td><small><span [ngClass]="{'logged-in': contact.isActive === true,'logged-out': contact.isActive === false}"class="logged-in">●</span></small></td>
         </tr>
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
-
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
-
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
-
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
-
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
-
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
-
-        <tr>
-
-            <td><b>User</b></td>
-            <td>UserName <br><small>hello</small></td>
-            <td><small>active</small></td>
-        </tr>
+        
     </tbody>
 </table>

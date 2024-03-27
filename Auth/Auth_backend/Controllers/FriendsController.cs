@@ -1,12 +1,13 @@
 ﻿using FLiu__Auth.Models;
 using FLiu__Auth.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace FLiu__Auth.Controllers
 {
-    
+    [Authorize]
     [ApiController]
     public class FriendsController : ControllerBase
     {
@@ -49,6 +50,22 @@ namespace FLiu__Auth.Controllers
         {
 
             var res = await _friendShipRepo.GetRequest(id);
+            return Ok(res);
+        }
+
+        [HttpGet]
+        [Route("friend/pendings/{id}")]
+        public async Task<IActionResult> pendings(int id)
+        {
+            var res = await _friendShipRepo.GetAllPendings(id);
+            return Ok(res);
+        }
+
+        [HttpGet]
+        [Route("friend/ministatement/{id}")]
+        public async Task<IActionResult> ministatement(int id)
+        {
+            var res = await _friendShipRepo.GetMiniStatement(id);
             return Ok(res);
         }
 

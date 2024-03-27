@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map,from, catchError, throwError } from 'rxjs';
+import { Observable, map,from, catchError, throwError, BehaviorSubject } from 'rxjs';
 import { Register } from '../Interface/Register';
 
 
@@ -10,7 +10,7 @@ import { Register } from '../Interface/Register';
 export class PrimaryService {
 
 
-  public isLoggedin : boolean = false;
+  
 
   apiUrl ="https://localhost:7204";
   apiUrl1 ="http://localhost:5285"
@@ -100,7 +100,8 @@ export class PrimaryService {
   //   };
   // }
     
-  getLoggedin(){
+  isLoggedin:boolean =false;
+  getLoggedin():boolean{
     return this.isLoggedin;
   }
 

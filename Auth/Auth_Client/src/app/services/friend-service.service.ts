@@ -57,6 +57,10 @@ export class FriendServiceService {
     // Make the POST request with query parameters
     return this.http.post<any>(`${this.apiUrl}/response`, {}, { params: params, withCredentials: true });
   }
+
+  getMiniStatement(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/ministatement/${userId}`, { withCredentials: true });
+  }
 }
   
 

@@ -1,23 +1,40 @@
-import { CanActivateFn } from '@angular/router';
+import {  CanActivateFn } from '@angular/router';
 import { PrimaryService } from '../services/primary.service';
 import { inject} from '@angular/core';
-import { Router } from 'express';
+import { Router } from '@angular/router';
+
+
+export class Permission{
+  canActivate():boolean{
+    return false;
+  }
+}
+
 
 export const authGuard: CanActivateFn = (route, state) => {
 
-  /**
-   *
-   */
-  
-  const primary : PrimaryService = inject(PrimaryService);
-  const router = inject(Router);
-  if(primary.getLoggedin()==false){
+  const serv  = inject(PrimaryService);
+  const _router = inject(Router);
+  let isLoggedIn =  serv.getLoggedin();
+
+  if(isLoggedIn == true){
     return true;
   }
   else{
-    router.navigate(['/login']);
-    return true;
+    alert("you must log in first");
+    _router.navigate(['login']);
+    return false;
   }
+  
+  // const primary : PrimaryService = inject(PrimaryService);
+  // const router = inject(Router);
+  // if(primary.getLoggedin()){
+  //   return true;
+  // }
+  // else{
+  //   router.navigate([LoginComponent]);
+  //   return true;
+  // }
 };
 
 

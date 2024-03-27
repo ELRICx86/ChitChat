@@ -11,5 +11,7 @@ namespace FLiu__Auth.Repository
         public Task<FriendShip> Delete(int id1, int id2);
         public Task<IEnumerable<FriendShipDetails>> GetRequest(int id);
         public Task<FriendShip> Response(int user, int friend, string action);
+        public Task<IEnumerable<FriendShipDetails>> GetAllPendings(int userId);
+        public Task<IEnumerable<MiniStatement>> GetMiniStatement(int userId);
     }
 }

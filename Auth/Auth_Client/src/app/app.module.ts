@@ -18,7 +18,10 @@ import { MessagesComponent } from './messages/messages.component';
 import { InputComponent } from './input/input.component';
 import { PendingComponent } from './pending/pending.component';
 import { FriendlistComponent } from './friendlist/friendlist.component';
+import { AvatarModule } from 'ngx-avatars';
 
+
+const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +40,10 @@ import { FriendlistComponent } from './friendlist/friendlist.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AvatarModule.forRoot({
+      colors: avatarColors
+    })
   ],
   providers: [
     provideClientHydration()

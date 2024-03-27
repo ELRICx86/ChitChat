@@ -7,24 +7,24 @@
       <div class="collapse navbar-collapse" [class.show]="isNavbarOpen" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a routerLink="/chat" routerLinkActive="active" class="nav-link">Chat</a>
+            <a routerLink="/chat"  class="nav-link">Chat</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/pending" routerLinkActive="active" class="nav-link">Friends</a>
+            <a routerLink="/pending"  class="nav-link">Friends</a>
           </li>
 
           <li class="nav-item">
-            <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+            <a routerLink="/login"  class="nav-link">Login</a>
           </li>
 
           <li class="nav-item">
-            <a routerLink="/login" (click)="LogOut()" routerLinkActive="active" class="nav-link">Logout</a>
+            <a routerLink="/login" (click)="LogOut()"  class="nav-link">Logout</a>
           </li>
 
           <li class="nav-item">
-            <a routerLink="/register" routerLinkActive="active" class="nav-link">Register</a>
+            <a routerLink="/register" class="nav-link">Register</a>
           </li>
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" (click)="toggleDropdown()"
               aria-haspopup="true" aria-expanded="false">
               Settings
@@ -35,7 +35,7 @@
               <div class="dropdown-divider"></div>
              
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
