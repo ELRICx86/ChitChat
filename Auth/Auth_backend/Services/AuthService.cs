@@ -47,7 +47,8 @@ namespace FLiu__Auth.Services
                 {
                     status = true,
                     Message = "Login Successful",
-                    StatusCode = repoDto.StatusCode
+                    StatusCode = repoDto.StatusCode,
+                    Identity = repoDto.Identity
 
                 };
             }
@@ -155,7 +156,7 @@ namespace FLiu__Auth.Services
                 new CookieOptions
                 {
                     Expires = DateTime.Now.AddDays(7),
-                    HttpOnly = true,
+                    HttpOnly = false,
                     Secure = true,
                     IsEssential = true,
                     SameSite = SameSiteMode.Strict

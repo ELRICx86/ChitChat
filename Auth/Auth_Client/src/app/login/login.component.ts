@@ -4,7 +4,7 @@ import { Login } from '../Interface/Login';
 import { NgModel } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import {  LoginResponse } from '../Interface/LoginResponse';
-import { error } from 'console';
+
 
 @Component({
   selector: 'app-login',
@@ -34,6 +34,8 @@ export class LoginComponent {
     this.primary.login(login).subscribe({
       next: (response:LoginResponse) => {
         this.primary.isLoggedin = true;
+        this.primary.identity = response.identity;
+        //console.log(this.primary.identity);
         //if(response.statusCode!=200)throw error;
         // Assuming response contains credentials or any other success data
         if(response.statusCode !="200"){

@@ -31,10 +31,10 @@
                     </div>
                     <div class="col-auto"> <!-- This div takes half of the column width -->
                         <div class="input-group input-group-sm mb-3 search-button">
-                            <input type="text" class="form-control form-control-sm" placeholder="Search friend"
+                            <input type="text"  [(ngModel)]="searchTerm" class="form-control form-control-sm" placeholder="Search friend"
                                 aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary btn-sm" type="button"
+                                <button (click)="searchitem()" class="btn-outline-secondary btn-sm" type="button"
                                     style="border-top-right-radius: 20px; border-bottom-right-radius: 20px;">
                                     <!-- Bootstrap search icon -->
                                     <span class="bi bi-search"></span>

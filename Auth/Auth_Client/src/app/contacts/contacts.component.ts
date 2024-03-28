@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject, input } from '@angular/core';
 import { FriendServiceService } from '../services/friend-service.service';
 import { ministatement } from '../Interface/MiniStatement';
 import { response } from 'express';
 import { error, log } from 'console';
+import { PrimaryService } from '../services/primary.service';
 
 @Component({
   selector: 'app-contacts',
@@ -13,11 +14,28 @@ export class ContactsComponent implements OnInit {
 
   //randomColor: string;
 
+  // filteredList: ministatement[] = [];
+  // @Input() child_searchTerm: string = '';
   
   contacts: ministatement[] = []
 
   constructor(private friendServ: FriendServiceService) {
   }
+
+  // primary = inject(PrimaryService);
+
+  // filterList(): void {
+  //   if (this.child_searchTerm.trim() !== '') {
+  //     this.filteredList = this.contacts.filter(item =>
+  //       item.firstName.toLowerCase().includes(this.child_searchTerm.toLowerCase())
+  //     );
+  //   } else {
+  //     // If search term is empty, display the original list
+  //     this.filteredList = this.contacts;
+  //   }
+  // }
+
+
   
   ngOnInit(): void {
     this.friendServ.getMiniStatement(9).subscribe({
@@ -69,6 +87,4 @@ export class ContactsComponent implements OnInit {
     // Return the color corresponding to the index
     return colors[index];
   }
-  
-
 }

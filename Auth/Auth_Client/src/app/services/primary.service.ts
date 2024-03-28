@@ -2,6 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map,from, catchError, throwError, BehaviorSubject } from 'rxjs';
 import { Register } from '../Interface/Register';
+import { CookieService } from 'ngx-cookie-service';
+import { identity } from '../Interface/Identity';
 
 
 @Injectable({
@@ -9,13 +11,13 @@ import { Register } from '../Interface/Register';
 })
 export class PrimaryService {
 
-
+  identity : identity | undefined;
   
 
   apiUrl ="https://localhost:7204";
   apiUrl1 ="http://localhost:5285"
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private CookieService : CookieService) {
    }
 
 
@@ -75,6 +77,8 @@ export class PrimaryService {
 
   
   logout(): Observable<any> {
+    this.isLoggedin = false;
+    this.identity = undefined;
     return this.http.post<any>(`${this.apiUrl1}/logout`, {},{withCredentials:true});
   }
 
@@ -102,7 +106,8 @@ export class PrimaryService {
     
   isLoggedin:boolean =false;
   getLoggedin():boolean{
-    return this.isLoggedin;
+    //return this.CookieService.check('token');
+    return this.CookieService.check('token');
   }
 
   

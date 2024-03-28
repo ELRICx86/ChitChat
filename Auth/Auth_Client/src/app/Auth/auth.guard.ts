@@ -4,20 +4,12 @@ import { inject} from '@angular/core';
 import { Router } from '@angular/router';
 
 
-export class Permission{
-  canActivate():boolean{
-    return false;
-  }
-}
-
-
 export const authGuard: CanActivateFn = (route, state) => {
 
   const serv  = inject(PrimaryService);
   const _router = inject(Router);
-  let isLoggedIn =  serv.getLoggedin();
-
-  if(isLoggedIn == true){
+  
+  if(serv.getLoggedin()){
     return true;
   }
   else{

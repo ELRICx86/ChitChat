@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ContactsComponent } from '../contacts/contacts.component';
 
 @Component({
   selector: 'app-chat',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './chat.component.css'
 })
 export class ChatComponent {
+searchitem() {
+  
+}
+  searchTerm: string ='';
+
+
 
 }

@@ -1,8 +1,10 @@
 ﻿using FLiu__Auth.Models;
 using FLiu__Auth.Models.Dto;
+using FLiu__Auth.Models.Dto.NewFolder;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
+using System.Transactions;
 
 namespace FLiu__Auth.Repository
 {
@@ -80,6 +82,8 @@ namespace FLiu__Auth.Repository
                                             // Commit transaction
                                             transaction.Commit();
 
+                                            var temp = await getidentity(cd.Email);
+                                            
                                             return new RepoDto
                                             {
                                                 StatusCode = "200",
@@ -87,6 +91,14 @@ namespace FLiu__Auth.Repository
                                                 User = new User
                                                 {
                                                     Email = cd.Email
+                                                },
+                                                Identity = new Identity
+                                                {
+                                                    Email = temp.Email,
+                                                    FirstName = temp.FirstName,
+                                                    LastName = temp.LastName,
+                                                    UserName = temp.UserName
+
                                                 }
                                                 // You may include additional user information here if needed
                                             };
@@ -131,6 +143,41 @@ namespace FLiu__Auth.Repository
 
             }
             
+        }
+
+
+        public async Task<Identity> getidentity(string email)
+        {
+            string query = "SELECT * FROM Users WHERE Email = @Email";
+            using(var conn = await GetOpenConnectionAsync()) 
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                // Add parameter for email
+                command.Parameters.AddWithValue("@Email", email);
+
+                // Assign transaction if needed
+
+
+                // Execute the query asynchronously
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (reader.HasRows && await reader.ReadAsync())
+                    {
+                        return new Identity
+                        {
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
+                            UserName = reader.GetString(reader.GetOrdinal("UserName"))
+                        };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+
         }
 
 

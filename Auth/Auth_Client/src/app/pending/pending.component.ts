@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { pending } from '../Interface/FriendShip/Pending';
 import { FriendServiceService } from '../services/friend-service.service';
+import { PrimaryService } from '../services/primary.service';
 
 @Component({
   selector: 'app-pending',
@@ -16,11 +17,11 @@ export class PendingComponent implements OnInit {
     
   }
   pendingRequests: pending[] = [];
-
+  primary = inject(PrimaryService);
   ngOnInit(): void {
     this.friendService.getAllfriend(9).subscribe({
-      next: (response)=>{
-        this.pendingRequests = response;
+      next : response =>{
+        this.pendingRequests = [...response];
       },
       error:err =>{
         console.log(err);

@@ -14,7 +14,7 @@ export class FriendServiceService {
    }
 
    getAllfriend(UserId :number):Observable<any> {
-     return this.http.get<any>(`${this.apiUrl}/getall/${UserId}`,{withCredentials:true});
+     return this.http.get<any>(`${this.apiUrl}/getall/${UserId}`, {withCredentials:true});
   }
 
   GetFriendById(UserId:number):Observable<any>{
@@ -34,7 +34,7 @@ export class FriendServiceService {
   }
 
   GetAllRequest(UserId: number):Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/request/${UserId}`);
+    return this.http.get<any>(`${this.apiUrl}/request/${UserId}`,{withCredentials:true});
   }
 
   RemoveFriend(user:number, friend:number):Observable<any>{
