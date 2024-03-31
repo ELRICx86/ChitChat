@@ -4,6 +4,7 @@ import { Login } from '../Interface/Login';
 import { NgModel } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import {  LoginResponse } from '../Interface/LoginResponse';
+import { PrivateService } from '../services/Hub/private.service';
 
 
 @Component({
@@ -14,10 +15,9 @@ import {  LoginResponse } from '../Interface/LoginResponse';
 export class LoginComponent {
   errorMessage: string =""
 
-  constructor(private primary:PrimaryService){
+  constructor(private primary:PrimaryService, private oneone:PrivateService){
 
   }
-
 
   email : string="";
   password : string="";
@@ -35,6 +35,10 @@ export class LoginComponent {
       next: (response:LoginResponse) => {
         this.primary.isLoggedin = true;
         this.primary.identity = response.identity;
+        this.oneone.onConnect();
+
+        //this.oneone.CallMe();
+
         //console.log(this.primary.identity);
         //if(response.statusCode!=200)throw error;
         // Assuming response contains credentials or any other success data

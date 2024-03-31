@@ -4,6 +4,7 @@ import { ministatement } from '../Interface/MiniStatement';
 import { response } from 'express';
 import { error, log } from 'console';
 import { PrimaryService } from '../services/primary.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-contacts',
@@ -12,14 +13,22 @@ import { PrimaryService } from '../services/primary.service';
 })
 export class ContactsComponent implements OnInit {
 
+
+
+
+    onSelectItem(_t5: ministatement) {
+       this._shared.setData(this.selectedItem);
+    }
+
   //randomColor: string;
 
   // filteredList: ministatement[] = [];
   // @Input() child_searchTerm: string = '';
   
   contacts: ministatement[] = []
+  selectedItem: ministatement|undefined;
 
-  constructor(private friendServ: FriendServiceService) {
+  constructor(private friendServ: FriendServiceService, private _shared:SharedService) {
   }
 
   // primary = inject(PrimaryService);

@@ -61,6 +61,9 @@ export class FriendServiceService {
   getMiniStatement(userId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/ministatement/${userId}`, { withCredentials: true });
   }
+
+
+  
 }
   
 

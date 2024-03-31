@@ -2,7 +2,7 @@
 
     <tbody>
 
-        <tr *ngFor="let contact of contacts">
+        <tr *ngFor="let contact of contacts" [class.selected]="selectedItem === contact" (click)="onSelectItem(contact)">
             <td><ngx-avatars [bgColor]="getRandomColor(contact.firstName)" name="{{contact.firstName}} {{contact.lastName}}"></ngx-avatars></td>
             <td>{{contact.firstName}} {{contact.lastName}} <br><small>{{contact.lastMessage}}</small></td>
             <td><small><span [ngClass]="{'logged-in': contact.isActive === true,'logged-out': contact.isActive === false}"class="logged-in">●</span></small></td>

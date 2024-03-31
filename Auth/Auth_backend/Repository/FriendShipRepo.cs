@@ -392,7 +392,7 @@ namespace FLiu__Auth.Repository
                                 reader.Close();
 
                                 // If the action was successful and it's an accept action, insert a new conversation record
-                                if (action.ToLower() == "accept")
+                                /*if (action.ToLower() == "accept")
                                 {
                                     string temp = user < friend ? $"{user}_{friend}" : $"{friend}_{user}";
                                     string message_query = @"INSERT INTO Conversations (ConversationType, ConversationName) VALUES (@ConversationType, @ConversationName);";
@@ -402,7 +402,7 @@ namespace FLiu__Auth.Repository
                                         command2.Parameters.AddWithValue("@ConversationName", temp);
                                         await command2.ExecuteNonQueryAsync();
                                     }
-                                }
+                                }*/
 
                                 // Commit the transaction
                                 transaction.Commit();

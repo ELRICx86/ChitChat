@@ -1,3 +1,4 @@
+using FLiu__Auth.Hubs;
 using FLiu__Auth.Models;
 using FLiu__Auth.Repository;
 using FLiu__Auth.Services;
@@ -11,6 +12,7 @@ ConfigurationManager config = builder.Configuration;
 // Add services to the container.
 builder.Services.AddCors();
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -73,6 +75,8 @@ builder.Services.AddCors(p => p.AddPolicy("temp", build =>
 }));
 
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("ApplicationSettings"));
+
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -93,6 +97,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<PrivateHub>("/private");
 
 
 

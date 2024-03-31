@@ -33,6 +33,11 @@ export class ChatService {
         console.log(error);
       });
 
+      this.chatConnection?.on("ConnectionId", (message: string) => {
+        console.log("Message received from server:", message);
+        // Handle the received message as needed
+    });
+
       this.chatConnection.on("UserConnected",()=>{
         console.log(`${this.myName} has joined the chat`);
         this.addUserConnectionId();
