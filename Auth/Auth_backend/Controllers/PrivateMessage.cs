@@ -10,7 +10,7 @@ namespace FLiu__Auth.Controllers
     {
         [HttpPost]
         [Route("/message")]
-        public IActionResult sendMessage([FromQuery] int from, [FromQuery] int to, [FromBody] Message message)
+        public async Task<IActionResult> sendMessage([FromQuery] int from, [FromQuery] int to, [FromBody] Message message)
         {
              return Ok(message);
         }

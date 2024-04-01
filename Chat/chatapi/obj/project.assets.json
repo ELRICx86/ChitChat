@@ -434,11 +434,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TN-99348\\Desktop\\angular\\ffff\\api\\mychat\\chatapi\\chatapi.csproj",
+      "projectUniqueName": "C:\\Users\\TN-99348\\Desktop\\chat app\\Chat\\chatapi\\chatapi.csproj",
       "projectName": "chatapi",
-      "projectPath": "C:\\Users\\TN-99348\\Desktop\\angular\\ffff\\api\\mychat\\chatapi\\chatapi.csproj",
+      "projectPath": "C:\\Users\\TN-99348\\Desktop\\chat app\\Chat\\chatapi\\chatapi.csproj",
       "packagesPath": "C:\\Users\\TN-99348\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TN-99348\\Desktop\\angular\\ffff\\api\\mychat\\chatapi\\obj\\",
+      "outputPath": "C:\\Users\\TN-99348\\Desktop\\chat app\\Chat\\chatapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

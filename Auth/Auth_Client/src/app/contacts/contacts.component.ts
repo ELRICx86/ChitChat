@@ -1,8 +1,6 @@
-import { Component, Input, OnInit, inject, input } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FriendServiceService } from '../services/friend-service.service';
 import { ministatement } from '../Interface/MiniStatement';
-import { response } from 'express';
-import { error, log } from 'console';
 import { PrimaryService } from '../services/primary.service';
 import { SharedService } from '../services/shared.service';
 
@@ -45,9 +43,12 @@ export class ContactsComponent implements OnInit {
   // }
 
 
-  
+  primary = inject(PrimaryService);
   ngOnInit(): void {
-    this.friendServ.getMiniStatement(9).subscribe({
+    if(this.primary.identity?.userId != null)
+    localStorage.setItem("userid", String(this.primary.identity?.userId));
+    var userid =  Number(localStorage.getItem("userid"));
+    this.friendServ.getMiniStatement(userid).subscribe({
       next : response =>{
         //console.log(response);
         this.contacts = response;

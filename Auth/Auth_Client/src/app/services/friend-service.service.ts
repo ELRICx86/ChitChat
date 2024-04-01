@@ -13,7 +13,7 @@ export class FriendServiceService {
 
    }
 
-   getAllfriend(UserId :number):Observable<any> {
+   getAllfriend(UserId :any):Observable<any> {
      return this.http.get<any>(`${this.apiUrl}/getall/${UserId}`, {withCredentials:true});
   }
 
@@ -33,8 +33,12 @@ export class FriendServiceService {
     return this.http.post<any>(`${this.apiUrl}/add`, {}, { params: params ,withCredentials:true});
   }
 
-  GetAllRequest(UserId: number):Observable<any>{
+  GetAllRequest(UserId: any):Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/request/${UserId}`,{withCredentials:true});
+  }
+
+  GetAllPendings(UserId: any):Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/pendings/${UserId}`,{withCredentials:true});
   }
 
   RemoveFriend(user:number, friend:number):Observable<any>{
@@ -58,7 +62,7 @@ export class FriendServiceService {
     return this.http.post<any>(`${this.apiUrl}/response`, {}, { params: params, withCredentials: true });
   }
 
-  getMiniStatement(userId: number): Observable<any[]> {
+  getMiniStatement(userId: any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/ministatement/${userId}`, { withCredentials: true });
   }
 

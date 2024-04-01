@@ -19,7 +19,7 @@ export class PendingComponent implements OnInit {
   pendingRequests: pending[] = [];
   primary = inject(PrimaryService);
   ngOnInit(): void {
-    this.friendService.getAllfriend(9).subscribe({
+    this.friendService.GetAllPendings(this.primary.identity?.userId).subscribe({
       next : response =>{
         this.pendingRequests = [...response];
       },

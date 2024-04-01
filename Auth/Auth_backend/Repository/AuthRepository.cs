@@ -94,6 +94,7 @@ namespace FLiu__Auth.Repository
                                                 },
                                                 Identity = new Identity
                                                 {
+                                                    UserId = temp.UserId,
                                                     Email = temp.Email,
                                                     FirstName = temp.FirstName,
                                                     LastName = temp.LastName,
@@ -165,6 +166,7 @@ namespace FLiu__Auth.Repository
                     {
                         return new Identity
                         {
+                            UserId = Convert.ToInt32(reader["UserID"]),
                             FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                             LastName = reader.GetString(reader.GetOrdinal("LastName")),
                             Email = reader.GetString(reader.GetOrdinal("Email")),

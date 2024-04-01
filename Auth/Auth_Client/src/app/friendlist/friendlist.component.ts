@@ -12,9 +12,9 @@ import { PrimaryService } from '../services/primary.service';
 })
 export class FriendlistComponent implements OnInit {
   friends: pending[] = []
-  //primary = inject(PrimaryService);
+  primary = inject(PrimaryService);
   ngOnInit(): void {
-    this.friendServ.GetAllRequest(9).subscribe({
+    this.friendServ.GetAllRequest(this.primary.identity?.userId).subscribe({
       next: (response) =>{
         this.friends = response;
       },

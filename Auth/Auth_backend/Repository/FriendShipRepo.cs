@@ -73,7 +73,7 @@ namespace FLiu__Auth.Repository
                         }
                         else if (status == FriendshipStatus.Rejected)
                         {
-                            friendship.Message = "Friendship request is pending.";
+                            friendship.Message = "Friendship request Was Rejected.";
 
                         }
                     }
@@ -424,8 +424,5 @@ namespace FLiu__Auth.Repository
                 return null;
             }
         }
-
-
-
     }
 }

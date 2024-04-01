@@ -21,7 +21,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IAuthRepositoy,  AuthRepository>();
-
+builder.Services.AddScoped<IPrivateService,  PrivateService>();
+builder.Services.AddScoped<IPrivateMessagesRepo, PrivateMessagesRepo>();
 builder.Services.AddScoped<IFriendShipRepo, FriendShipRepo>();
 
 /*builder.Services.Configure<CookiePolicyOptions>(options =>
