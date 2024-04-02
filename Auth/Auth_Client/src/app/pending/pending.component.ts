@@ -9,6 +9,7 @@ import { PrimaryService } from '../services/primary.service';
   styleUrl: './pending.component.css'
 })
 export class PendingComponent implements OnInit {
+
   
   /**
    *
@@ -18,19 +19,61 @@ export class PendingComponent implements OnInit {
   }
   pendingRequests: pending[] = [];
   primary = inject(PrimaryService);
+  
+  
+  
   ngOnInit(): void {
-    this.friendService.GetAllPendings(this.primary.identity?.userId).subscribe({
-      next : response =>{
-        this.pendingRequests = [...response];
+
+    var userData = localStorage.getItem('userData');
+  
+    if (userData !== null) {
+      var item = JSON.parse(userData);
+      
+      if (item && item.userId !== undefined) {
+        
+        
+        this.friendService.GetAllPendings(item.userId).subscribe({
+          next : response =>{
+            this.pendingRequests = [...response];
+          },
+          error:err =>{
+            console.log(err);
+          }
+        });
+      } else {
+        console.log("User data is incomplete.");
+      }
+    } else {
+      console.log("No user data found in local storage.");
+    }
+
+
+    
+  }
+
+
+
+  RejectReq(userid:number) {
+    
+    this.friendService.Response(this.primary.getUserInfo().userId, userid , "reject").subscribe({
+      next:response =>{
+        alert(response.message);
       },
-      error:err =>{
-        console.log(err);
+      error:err=>{
+        console.log(err)
       }
     })
-  }
-  
+    }
 
 
-
-
+  AcceptReq(userid:number) {
+    this.friendService.Response(this.primary.getUserInfo().userId, userid , "accept").subscribe({
+      next:response =>{
+        alert(response.message);
+      },
+      error:err=>{
+        console.log(err)
+      }
+    })
+    }
 }

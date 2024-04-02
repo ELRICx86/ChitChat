@@ -14,7 +14,7 @@ export class FriendlistComponent implements OnInit {
   friends: pending[] = []
   primary = inject(PrimaryService);
   ngOnInit(): void {
-    this.friendServ.GetAllRequest(this.primary.identity?.userId).subscribe({
+    this.friendServ.GetAllRequest(this.primary.getUserInfo().userId).subscribe({
       next: (response) =>{
         this.friends = response;
       },

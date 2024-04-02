@@ -15,6 +15,10 @@ import { InputComponent } from './input/input.component';
 import { PendingComponent } from './pending/pending.component';
 import { FriendlistComponent } from './friendlist/friendlist.component';
 import { AvatarModule } from 'ngx-avatars';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
 
 
 const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
@@ -39,7 +43,19 @@ const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
     FormsModule,
     AvatarModule.forRoot({
       colors: avatarColors
-    })
+    }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      closeButton:true,
+      progressBar:true,
+      progressAnimation:'increasing',
+      enableHtml:true,
+      positionClass: 'toast-top-left',
+      
+
+    }),
+    ButtonModule,
+    PasswordModule
   ],
   providers: [
     provideClientHydration(),

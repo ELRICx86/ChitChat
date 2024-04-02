@@ -22,8 +22,9 @@
                         <td>{{ request.since | date:'MM/dd/yyyy' }}<br><small>{{ request.since | date:' h:mm a' }}</small></td>
                         <td>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-success c_btn"><i class="bi bi-bookmark-plus"></i></button>
-                                <button type="button" class="btn btn-danger c_btn"><i class="bi bi-trash"></i></button>
+                                
+                                <button type="button" [value]="request" (click)="AcceptReq(request.userID)" class="btn btn-success c_btn"><i class="bi bi-bookmark-plus"></i></button>
+                                <button type="button" [value]="request" (click)="RejectReq(request.userID)" class="btn btn-danger c_btn"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>

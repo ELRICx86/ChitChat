@@ -3,6 +3,8 @@ import { FriendServiceService } from '../services/friend-service.service';
 import { ministatement } from '../Interface/MiniStatement';
 import { PrimaryService } from '../services/primary.service';
 import { SharedService } from '../services/shared.service';
+import { identity } from 'rxjs';
+import { json } from 'stream/consumers';
 
 @Component({
   selector: 'app-contacts',
@@ -44,19 +46,31 @@ export class ContactsComponent implements OnInit {
 
 
   primary = inject(PrimaryService);
+  
   ngOnInit(): void {
-    if(this.primary.identity?.userId != null)
-    localStorage.setItem("userid", String(this.primary.identity?.userId));
-    var userid =  Number(localStorage.getItem("userid"));
-    this.friendServ.getMiniStatement(userid).subscribe({
-      next : response =>{
-        //console.log(response);
-        this.contacts = response;
-      },
-      error: error =>{
-        console.log(error);
+    console.log("ngOnit called");
+    var userData = localStorage.getItem('userData');
+  
+    if (userData !== null) {
+      var item = JSON.parse(userData);
+      
+      if (item && item.userId !== undefined) {
+       
+        
+        this.friendServ.getMiniStatement(Number(item.userId)).subscribe({
+          next: response => {
+            this.contacts = response;
+          },
+          error: error => {
+            console.log(error);
+          }
+        });
+      } else {
+        console.log("User data is incomplete.");
       }
-    })
+    } else {
+      console.log("No user data found in local storage.");
+    }
   }
 
 

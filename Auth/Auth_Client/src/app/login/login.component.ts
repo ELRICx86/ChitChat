@@ -5,6 +5,7 @@ import { NgModel } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import {  LoginResponse } from '../Interface/LoginResponse';
 import { PrivateService } from '../services/Hub/private.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { PrivateService } from '../services/Hub/private.service';
 export class LoginComponent {
   errorMessage: string =""
 
-  constructor(private primary:PrimaryService, private oneone:PrivateService){
+  constructor(private primary:PrimaryService, private oneone:PrivateService,private toastr: ToastrService){
 
   }
 
@@ -33,10 +34,14 @@ export class LoginComponent {
 
     this.primary.login(login).subscribe({
       next: (response:LoginResponse) => {
-        
-        this.primary.isLoggedin = true;
-        this.primary.identity = response.identity;
-        this.oneone.onConnect();
+        if(response.statusCode=="200"){
+            var jsonString = JSON.stringify(response.identity);
+            localStorage.setItem('userData', jsonString);
+            this.primary.isLoggedin = true;
+            this.primary.identity = response.identity;
+            this.oneone.onConnect();
+            this.toastr.success('Login Successful', 'Login');
+        }
 
         //this.oneone.CallMe();
 
@@ -44,7 +49,7 @@ export class LoginComponent {
         //if(response.statusCode!=200)throw error;
         // Assuming response contains credentials or any other success data
         if(response.statusCode !="200"){
-          alert(response.message);
+          this.toastr.error(response.message,'Login');
         }
       },
       error: (error: HttpErrorResponse) => {

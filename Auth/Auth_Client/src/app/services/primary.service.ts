@@ -110,6 +110,18 @@ export class PrimaryService {
     return this.CookieService.check('token');
   }
 
+
+  getUserInfo(){
+    var userData = localStorage.getItem('userData');
+  
+    if (userData !== null) {
+      var item = JSON.parse(userData);
+      
+      if (item && item.userId !== undefined) {
+          return item;
+      }
+  }
+
   
 
 
@@ -168,4 +180,5 @@ export class PrimaryService {
   //   });
   // }
 
+}
 }
