@@ -66,6 +66,14 @@ export class FriendServiceService {
     return this.http.get<any[]>(`${this.apiUrl}/ministatement/${userId}`, { withCredentials: true });
   }
 
+  getFriends(userId: any, page: number, size:number): Observable<any[]> {
+    let params = new HttpParams();
+    params = params.append('id', userId.toString());
+    params = params.append('page', page.toString());
+    params = params.append('size', size.toString());
+    return this.http.get<any[]>(`${this.apiUrl}/getfriends/`, { params:params, withCredentials: true });
+  }
+
 
   
 }

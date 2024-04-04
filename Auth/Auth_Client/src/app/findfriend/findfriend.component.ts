@@ -10,12 +10,20 @@ import { potentialFriends } from '../Interface/PotentialFriends';
   styleUrl: './findfriend.component.css'
 })
 export class FindfriendComponent implements OnInit {
+
+
+
   products: ministatement[] =[];
 
 
     responsiveOptions: any[] | undefined;
     Friends:potentialFriends[] =[];
     selectedfriend: any;
+    
+      
+
+   
+    
 
     constructor(private friend: FriendServiceService) {}
 
@@ -29,6 +37,16 @@ export class FindfriendComponent implements OnInit {
             console.log(err)
           }
         });
+
+        this.friend.getFriends(9,1,10).subscribe({
+          next: response =>{
+            console.log(response);
+            this.Friends = [...response];
+          },
+          error:err =>{
+            console.log(err)
+          }
+        })
 
         this.responsiveOptions = [
           {
