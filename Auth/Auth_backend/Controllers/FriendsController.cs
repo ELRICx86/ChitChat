@@ -54,6 +54,22 @@ namespace FLiu__Auth.Controllers
         }
 
         [HttpGet]
+        [Route("friend/friendcount/{id}")]
+        public async Task<IActionResult> getFriendCount(int id)
+        {
+            var res = await _friendShipRepo.getFriendsCount(id);
+            return Ok(res);
+        }
+
+        [HttpGet]
+        [Route("friend/getfriends")]
+        public async Task<IActionResult> getPotentialFriends([FromQuery]int id, [FromQuery] int page, [FromQuery] int size)
+        {
+            var res = await _friendShipRepo.getPotentialFriends( id, page, size);
+            return Ok(res);
+        }
+
+        [HttpGet]
         [Route("friend/pendings/{id}")]
         public async Task<IActionResult> pendings(int id)
         {

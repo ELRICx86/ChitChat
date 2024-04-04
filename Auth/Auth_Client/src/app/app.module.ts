@@ -19,6 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
+import { FindfriendComponent } from './findfriend/findfriend.component';
+import { CarouselModule } from 'primeng/carousel';
+import { ListboxModule } from 'primeng/listbox';
 
 
 const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
@@ -33,7 +36,8 @@ const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
     MessagesComponent,
     InputComponent,
     PendingComponent,
-    FriendlistComponent
+    FriendlistComponent,
+    FindfriendComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,9 @@ const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
 
     }),
     ButtonModule,
-    PasswordModule
+    PasswordModule,
+    CarouselModule,
+    ListboxModule
   ],
   providers: [
     provideClientHydration(),

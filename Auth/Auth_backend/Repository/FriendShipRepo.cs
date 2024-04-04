@@ -424,5 +424,83 @@ namespace FLiu__Auth.Repository
                 return null;
             }
         }
+
+        public async Task<int> getFriendsCount(int userId)
+        {
+            int friendsCount = 0;
+            using (SqlConnection connection = await GetOpenConnectionAsync())
+            {
+                string query = "SELECT TotalCount FROM dbo.GetFriendCount(@UserId); ";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    try
+                    {
+
+                        // Execute the query
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            if (reader.Read())
+                            {
+                                friendsCount = Convert.ToInt32(reader["TotalCount"]);
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception
+                        Console.WriteLine("Error: " + ex.Message);
+                        throw; // Rethrow the exception
+                    }
+                }
+            }
+
+            return friendsCount;
+        }
+
+
+
+        public async Task<IEnumerable<PotentialFriends>> getPotentialFriends(int UserId, int page_number, int page_size)
+        {
+
+            List<PotentialFriends> friendships = new List<PotentialFriends>();
+
+            using (var connection = await GetOpenConnectionAsync())
+            {
+                string query = "select * from GetPotentialFriends(@UserId, @page_number, @page_size)";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", UserId);
+                    command.Parameters.AddWithValue("@page_number", page_number);
+                    command.Parameters.AddWithValue("@page_size", page_size);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            PotentialFriends p = new PotentialFriends
+                            {
+                                UserId = Convert.ToInt32(reader["UserId"]),
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
+                                UserName = reader.GetString(reader.GetOrdinal("UserName")),
+                                RowNum = Convert.ToString(reader["RowNum"]),
+                                IsActive = Convert.ToInt32(reader["IsActive"])
+                            };
+
+                            friendships.Add(p);
+                        }
+                    }
+                }
+            }
+
+            return friendships;
+        }
     }
+
 }

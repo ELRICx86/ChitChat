@@ -13,5 +13,7 @@ namespace FLiu__Auth.Repository
         public Task<FriendShip> Response(int user, int friend, string action);
         public Task<IEnumerable<FriendShipDetails>> GetAllPendings(int userId);
         public Task<IEnumerable<MiniStatement>> GetMiniStatement(int userId);
+        public Task<int> getFriendsCount(int userId);
+        public Task<IEnumerable<PotentialFriends>> getPotentialFriends(int UserId, int page_number, int page_size);
     }
 }
