@@ -63,3 +63,36 @@ C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\chata
 C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\chatapi.genruntimeconfig.cache
 C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\ref\chatapi.dll
 C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\chatapi.sourcelink.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\appsettings.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\chatapi.exe
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\chatapi.deps.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\chatapi.runtimeconfig.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\chatapi.dll
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\chatapi.pdb
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.csproj.AssemblyReference.cache
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.AssemblyInfoInputs.cache
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.AssemblyInfo.cs
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.csproj.CoreCompileInputs.cache
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.sourcelink.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\staticwebassets\msbuild.chatapi.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\staticwebassets\msbuild.build.chatapi.props
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.chatapi.props
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.chatapi.props
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\scopedcss\bundle\chatapi.styles.css
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.csproj.Up2Date
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.dll
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\refint\chatapi.dll
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.pdb
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\chatapi.genruntimeconfig.cache
+C:\Users\TN-99348\Desktop\chat app\Chat\chatapi\obj\Debug\net8.0\ref\chatapi.dll
